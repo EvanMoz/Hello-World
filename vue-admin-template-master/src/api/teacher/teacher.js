@@ -14,7 +14,26 @@ export default {
       url: `/eduservice/eduteacher/delete/${id}`,
       method: 'delete'
     })
+  },
+  addTeacher(teacher){
+    return request({
+      url: `/eduservice/eduteacher/addTeacher`,
+      method: 'post',
+      data: teacher
+    })
+  },
+  getTeacherInfo(id){
+    return request({
+      url: `/eduservice/eduteacher/getTeacher/${id}`,
+      method: 'get'
+    })
+  },
+  updateTeacher(teacher){
+    return request({
+      url: `/eduservice/eduteacher/updateTeacher`,
+      method: 'post',
+      data: teacher
+    })
   }
-
 }
 
