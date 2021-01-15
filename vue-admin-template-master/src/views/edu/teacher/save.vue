@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import teacherApi from '@/api/teacher/teacher'
+import teacherApi from '@/api/edu/teacher'
 import ImageCropper from '@/components/ImageCropper'
 import PanThumb from '@/components/PanThumb'
 export default {
@@ -124,7 +124,7 @@ export default {
           type: 'success',
           message: '修改成功'
         })
-        this.$router.push({path:'/teacher/table'})
+        this.$router.push({path:'/edu/table'})
       })
     },
     saveTeacher(){
@@ -136,7 +136,7 @@ export default {
             message: '添加成功!'
           })
           //回到列表页面,路由跳转
-          this.$router.push({path:'/teacher/table'})
+          this.$router.push({path:'/edu/table'})
       })
     }
 

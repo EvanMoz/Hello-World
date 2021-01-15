@@ -59,7 +59,7 @@
          <el-table-column prop="sort" label="排序" width="60" />
          <el-table-column label="操作" width="200" align="center">
            <template slot-scope="scope">
-             <router-link :to="'/teacher/edit/'+scope.row.id">
+             <router-link :to="'/edu/edit/'+scope.row.id">
                <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
              </router-link>
              <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
@@ -80,7 +80,7 @@
 </template>
 <script>
 //引入调用teacher.js文件
-import teacher from '@/api/teacher/teacher';
+import teacher from '@/api/edu/teacher';
 
 export default {
   //写核心代码位置
@@ -139,7 +139,7 @@ export default {
       //   cancelButtonText: '取消',
       //   type: 'warning'
       // }).then(() => {
-      //   teacher.deleteTeacherById(id)
+      //   edu.deleteTeacherById(id)
       //     .then(response =>{//删除成功
       //       //提示信息
       //       this.$message({
