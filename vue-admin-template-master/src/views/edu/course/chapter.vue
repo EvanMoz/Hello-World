@@ -38,8 +38,8 @@
         </el-form-item>
         <el-form-item label="是否免费">
 
-          <el-radio-group v-model="video.free">
-            <el-radio :label="true">免费</el-radio>
+          <el-radio-group v-model="video.isFree">
+            <el-radio :label="true" >免费</el-radio>
             <el-radio :label="false">默认</el-radio>
           </el-radio-group>
         </el-form-item>
@@ -67,8 +67,8 @@
               <p>
                 {{video.title}}
                 <span class="acts">
-                            <el-button type="text">编辑</el-button>
-                            <el-button type="text">删除</el-button>
+                            <el-button type="text" @click="editVideo(video.id)">编辑</el-button>
+                            <el-button type="text" @click="removeVideo(video.id)">删除</el-button>
                     </span>
               </p>
             </li>
@@ -101,7 +101,7 @@ export default {
       video:{
         title: '',
         sort: '',
-        free: 0
+        isFree: false
       },
       chapter:{
         courseId:'',
@@ -128,7 +128,21 @@ export default {
     },
 
     saveOrUpdateVideo(){
-      this.addVideo()
+      this.updateVideo()
+    },
+
+    updateVideo(){
+      video.updateVideo(this.video).then(response=>{
+        //关闭弹框
+        this.dialogVideoFormVisible = false
+        //提示
+        this.$message({
+          type: 'success',
+          message: '修改小节成功'
+        })
+        //刷新页面
+        this.getChapterVideo()
+      })
     },
 
     addVideo(){
@@ -145,7 +159,30 @@ export default {
       })
     },
 
+    //删除小节
+    removeVideo(videoId){
+      this.$confirm('是否确认删除该小节?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        video.deleteVideo(videoId).then(response => {
+          this.$message({
+            type: 'success',
+            message: '删除小节成功'
+          })
+          this.getChapterVideo()
+        })
+      })
+    },
 
+    //编辑小节
+    editVideo(videoId){
+      this.dialogVideoFormVisible = true
+      video.getVideoInfo(videoId).then(response=>{
+        this.video = response.data.videoInfo
+      })
+    },
 
 
 
@@ -173,7 +210,7 @@ export default {
         chapter.deleteChapter(chapterId).then(response => {
           this.$message({
             type: 'success',
-            message: '添加章节成功'
+            message: '删除章节成功'
           })
           this.getChapterVideo()
         })

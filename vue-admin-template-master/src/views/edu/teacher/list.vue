@@ -86,6 +86,7 @@ export default {
   //写核心代码位置
   data(){  //定义变量和初始值
     return{
+      listLoading: false,
       list:null,//查询之后接口返回集合
       page:1,//当前页
       limit:5,//每页显示记录数
@@ -99,16 +100,16 @@ export default {
   },
   methods:{//创建具体的方法,调用teacher,js定义的方法
     getList(page = 1 ){
+      this.listLoading =true
       this.page = page
       teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)
         .then(response =>{
           this.list = response.data.items
           this.total = response.data.total
-          console.log(this.list)
-          console.log(this.total)
+          this.listLoading = false
         })//请求成功
         .catch(error =>{
-          console.log(error)
+          this.listLoading = false
         })//请求失败
     },
 

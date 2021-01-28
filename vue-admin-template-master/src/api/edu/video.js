@@ -9,9 +9,22 @@ export default {
     })
   },
   deleteVideo(videoId) {
+  return request({
+    url: '/eduservice/video/deleteVideo/'+videoId,
+    method: 'delete'
+  })
+},
+  getVideoInfo(videoId){
+  return request({
+    url: '/eduservice/video/getVideoInfo/'+videoId,
+    method: 'get'
+  })
+},
+  updateVideo(video){
     return request({
-      url: '/eduservice/video/deleteVideo/'+videoId,
-      method: 'delete'
+      url: '/eduservice/video/updateVideo',
+      method: 'post',
+      data: video
     })
   }
 }
