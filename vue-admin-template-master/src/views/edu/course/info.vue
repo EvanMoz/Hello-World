@@ -56,19 +56,19 @@
         <el-input-number :min="0" v-model="courseInfo.lessonNum" controls-position="right" placeholder="请填写课程的总课时数"/>
       </el-form-item>
 
-      <!-- 课程简介 TODO -->
+      <!-- 课程简介 -->
       <el-form-item label="课程简介">
         <tinymce :height="300" v-model="courseInfo.description" />
       </el-form-item>
 
-      <!-- 课程封面 TODO -->
+      <!-- 课程封面  -->
       <el-form-item label="课程封面">
 
         <el-upload
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
-          :action="BASE_API+'/edu/oss/file/avatar'"
+          :action="BASE_API+'/edu/oss/avatar'"
           class="avatar-uploader">
           <img :src="courseInfo.cover">
         </el-upload>
@@ -103,11 +103,11 @@ export default {
           teacherId:'',
           lessonNum: 0,
           description: '',
-          cover: '/static/01.jpg',
+          cover: 'http://education-6.oss-cn-shenzhen.aliyuncs.com/2021/01/29/e0de99b7148d432b982681b3b353bec101.jpg',
           price: 0
         },
         courseId:'',
-        BASE_API:process.env.dev,
+        BASE_API:process.env.BASE_API,
         teacherList:[],
         subjectOneList:[],
         subjectTwoList:[]

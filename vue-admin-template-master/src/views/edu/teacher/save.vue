@@ -94,6 +94,7 @@ export default {
     },
     cropSuccess(data){//上传成功
       //上传之后返回图片地址
+      this.imagecropperShow= false
       this.teacher.avatar = data.url
       this.imagecropperKey = this.imagecropperKey + 1
     },

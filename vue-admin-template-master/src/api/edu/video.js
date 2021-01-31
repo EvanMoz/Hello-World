@@ -10,7 +10,7 @@ export default {
   },
   deleteVideo(videoId) {
   return request({
-    url: '/eduservice/video/deleteVideo/'+videoId,
+    url: '/eduservice/video/delete/'+videoId,
     method: 'delete'
   })
 },
@@ -25,6 +25,12 @@ export default {
       url: '/eduservice/video/updateVideo',
       method: 'post',
       data: video
+    })
+  },
+  deleteVodVideo(videoId){
+    return request({
+      url: '/edu/vod/deleteVideo'+videoId,
+      method: 'delete'
     })
   }
 }
